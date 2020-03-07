@@ -18,6 +18,7 @@ export interface RecipeListing {
 
 export interface Ingredient {
     name: string;
+    code: string;
 }
 
 export interface RecipeRating {
