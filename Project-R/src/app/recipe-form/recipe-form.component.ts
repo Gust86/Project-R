@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeFormComponent implements OnInit {
   title: string = 'Φόρμα δημιουργίας Συνταγής';
+  autoResize: boolean = false;
 
  
 
