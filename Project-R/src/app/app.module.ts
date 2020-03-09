@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -18,10 +21,14 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
     RecipeFormComponent
   ],
   imports: [
+    HttpClientModule,
     InputTextModule,
     BrowserModule,
     AppRoutingModule,
-    InputTextareaModule 
+    InputTextareaModule, 
+            HttpClientInMemoryWebApiModule.forRoot(
+              InMemoryDataService, { dataEncapsulation: false}
+            )
   ],
   providers: [],
   bootstrap: [AppComponent]
