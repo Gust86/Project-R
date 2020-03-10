@@ -1,27 +1,72 @@
 <div class="text-center text-primary"><h3>{{title}}</h3></div>
-<br>
-<div class="d-flex">
-    <div class="ml-4">
-        <label>Εισάγετε όνομα Συνταγής:
-            <input type="text" class="ml-2" size="40" pInputText />
-        </label>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <label class="d-block" for="recipeName">Εισάγετε όνομα Συνταγής</label>
+            <input class="d-block" type="text" name="recipeName"  size="40" [(ngModel)]="model.name"/>
+        </div>
+        <div class="col-6">
+            <label class="d-block">Εισάγετε δυσκολία Συνταγής</label>
+            <!-- [multiple]="true" -->
+            <ng-select 
+                class="d-block"
+                [items]="complexityDropdown"
+                bindLabel="name"
+                placeholder="Επιλέξτε δυσκολία"
+                (ngModelChange)="onComplexityChanged()"
+                [(ngModel)]="model.complexity">
+        </ng-select>
+        </div>
     </div>
-    <div class="ml-4">
-        <label>Εισάγετε δυσκολία Συνταγής: 
-            <input type="text" size="30" pInputText/>
-        </label>
+    <div class="row">
+        <div class="col-6">
+            <label class="d-block">Υλικά Συνταγής</label>
+            <!-- [multiple]="true" -->
+            <ng-select 
+                class="d-block"
+                [items]="ingredients"
+                [multiple]="true"
+                bindLabel="name"
+                placeholder="Επιλέξτε Υλικά"
+                [(ngModel)]="model.ingredients">
+            </ng-select>
+        </div>
+        <div class="col-6">
+            <label class="d-block">Κατηγορία</label>
+            <ng-select 
+                class="d-block"
+                [items]="categoryDropdown"
+                bindLabel="name"
+                placeholder="Επιλέξτε Κατηγορία"
+                [(ngModel)]="model.category">
+            </ng-select>
+        </div>
     </div>
-</div><br>
-<div class="ml-4">
-    <label>Εισάγετε χρόνο εκτέλεσης Συνταγής:
-        <input type="text" class="ml-2" size="29" placeholder="Σε λεπτά" pInputText/>
-    </label>
-</div><br>
-
-<div class="ml-4">
-    <label>Εισάγετε Οδηγίες Συνταγής
-        <textarea [rows]="3" [cols]="60" pInputTextarea autoResize="autoResize"></textarea>
-    </label>
+    <div class="row">
+        <div class="col-6">
+            <label class="d-block" for="recipeName">Διάρκεια εκτέλεσης</label>
+            <input class="d-block" type="number" min="0" name="recipeName" size="40" [(ngModel)]="model.completionTime"/>
+        </div>
+        <div class="col-6">
+            <label class="d-block">Ημερομηνία Δημιουργίας</label>
+            <!-- <p-calendar [(ngModel)]="model.creationDate"></p-calendar> -->
+            <p-calendar [disabled]="true" [(ngModel)]="model.creationDate" dateFormat="dd.mm.yy"></p-calendar>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p-fileUpload name="myfile[]"></p-fileUpload>
+        </div>
+    </div>
+    <div class="row">
+        <label class="d-block">Οδηγίες</label>
+        <div class="col-12">
+            <textarea class="w-100" [(ngModel)]="model.instruction"></textarea>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <button class="btn btn-success" (click)="onSave()">Αποθήκευση</button>
 </div>
 
-
+<pre>{{ model | json }}</pre>
