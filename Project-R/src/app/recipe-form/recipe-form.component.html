@@ -13,7 +13,6 @@
                 [items]="complexityDropdown"
                 bindLabel="name"
                 placeholder="Επιλέξτε δυσκολία"
-                (ngModelChange)="onComplexityChanged()"
                 [(ngModel)]="model.complexity">
         </ng-select>
         </div>
@@ -69,4 +68,3 @@
     <button class="btn btn-success" (click)="onSave()">Αποθήκευση</button>
 </div>
 
-<pre>{{ model | json }}</pre>

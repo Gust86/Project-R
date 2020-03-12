@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Complexity, Ingredient, Category, Recipe } from '../models/recipes';
+import { DataService } from '../services/data.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -16,10 +18,9 @@ export class RecipeFormComponent implements OnInit {
 
   complexityDropdown: string[];
   categoryDropdown: string[];
-  ingredients: Ingredient[] = [
-    {name:'ζάχαρη'}, {name:'λάδι'}, {name:'κιμάς'},
-    {name: 'αλάτι'}, {name:'κανέλα'}, {name:'δάφνη'}    
-  ]
+  ingredients: Ingredient[] = [];
+  
+  constructor(private dataService: DataService) {}
   
   ngOnInit() {
     this.model = {
@@ -34,19 +35,21 @@ export class RecipeFormComponent implements OnInit {
     };
     this.complexityDropdown = Object.keys(Complexity).filter(key => !isNaN(Number(Complexity[key])));
     this.categoryDropdown = Object.keys(Category).filter(key => (Category[key]));
-    // TODO: HTTP call to get all ingredients and populate the list
+
     
   }
-
-  onComplexityChanged(): void {
-    setTimeout(() => {
-      console.log('Selected: ', this.model.complexity);
-    });
-  }
-
+   // TODO: HTTP call to the inmemory database
   onSave(): void {
-    // TODO: HTTP call to the inmemory database
-    console.log('Saved!', this.model);
+    this.dataService.addRecipe(this.model)
+    .subscribe(recipe => this.model = recipe)
   }
+// TODO: HTTP call to get all ingredients and populate the list
+  getIngredients(): void {
+    this.dataService.getIngredients()
+    .subscribe(ingredients => this.ingredients = ingredients)
+  }
+  
 
 }
+
+

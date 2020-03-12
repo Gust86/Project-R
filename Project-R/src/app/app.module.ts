@@ -10,10 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Primeng imports
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {FileUploadModule} from 'primeng/fileupload';
+import { FileUploadModule} from 'primeng/fileupload';
 
 
 import { AppRoutingModule } from './app-routing.module';
