@@ -1,2 +1,23 @@
 <p>recipe-list works!</p>
 <a [routerLink]="['recipe-form']">Go to Form</a>
+
+<p-table [value]="recipeList">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Συνταγή</th>
+            <th>Διάρκεια Εκτέλεσης </th>
+            <th>Δυσκολία</th>
+            <th>Κατηγορία</th>
+            <th>Ημ. Δημιουργίας</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-recipe>
+        <tr>
+            <td>{{recipe.name}}</td>
+            <td>{{recipe.completionTime}}</td>
+            <td>{{recipe.complexity}}</td>
+            <td>{{recipe.category}}</td>
+                <td>{{recipe.creationDate | date:'d/M/yyyy'}}</td>
+        </tr>
+    </ng-template>
+</p-table>

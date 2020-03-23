@@ -14,6 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule} from 'primeng/fileupload';
+import {TableModule} from 'primeng/table';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,7 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false}
     ),
+    TableModule,
     InputTextModule,
     CalendarModule,
     FileUploadModule,
