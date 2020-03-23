@@ -52,11 +52,11 @@
             <p-calendar [disabled]="true" [(ngModel)]="model.creationDate" dateFormat="dd.mm.yy"></p-calendar>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12">
             <p-fileUpload name="myfile[]"></p-fileUpload>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <label class="d-block">Οδηγίες</label>
         <div class="col-12">
@@ -68,3 +68,5 @@
     <button class="btn btn-success" (click)="onSave()">Αποθήκευση</button>
 </div>
 
+
+Recipes: {{ recipesCount }}

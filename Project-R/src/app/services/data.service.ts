@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, fromEventPattern, of } from 'rxjs';
 import { Recipe, Ingredient } from '../models/recipes';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -26,15 +26,19 @@ export class DataService {
       );    
   }
   getIngredients(): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(this.ingredientsUrl)
-      .pipe(
-        catchError(this.handleError<Ingredient[]>('getIngredients',[]))
-      );    
+    return this.http.get<Ingredient[]>(this.ingredientsUrl).pipe(
+      map(items => items),
+      catchError(err => this.catchBadResponse(err))
+    );
+      // .pipe(
+      //   catchError(this.handleError<Ingredient[]>('getIngredients',[]))
+      // );    
   }
   addRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(this.recipeUrl, recipe, this.httpOptions).pipe(
-    tap((newRecipe: Recipe) => console.log(`recipe ${newRecipe.name} added`)),
-    catchError(this.handleError<Recipe>('addRecipe'))
+      map(item => item),
+      tap((newRecipe: Recipe) => console.log(`recipe ${newRecipe.name} added`)),
+      catchError(this.handleError<Recipe>('addRecipe'))
     );
   }
   handleError<T>(operation = 'operation', result?: T) {
@@ -42,6 +46,10 @@ export class DataService {
       // console.error(error);
       return of(result as T);
     };
+  }
+
+  catchBadResponse(error: HttpErrorResponse | any): Observable<any> {
+    return of(false);
   }
 
 

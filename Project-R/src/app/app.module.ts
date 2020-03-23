@@ -29,6 +29,9 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
   ],
   imports: [
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false}
+    ),
     InputTextModule,
     CalendarModule,
     FileUploadModule,
@@ -37,10 +40,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
     NgSelectModule,
     BrowserAnimationsModule, 
     FormsModule,
-    InputTextareaModule, 
-            HttpClientInMemoryWebApiModule.forRoot(
-              InMemoryDataService, { dataEncapsulation: false}
-            )
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

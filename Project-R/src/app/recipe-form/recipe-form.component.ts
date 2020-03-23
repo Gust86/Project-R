@@ -18,12 +18,15 @@ export class RecipeFormComponent implements OnInit {
 
   complexityDropdown: string[];
   categoryDropdown: string[];
-  ingredients: Ingredient[] = [];
+  ingredients: Ingredient[];
+  recipes: Recipe[];
+  recipesCount: number;
   
   constructor(private dataService: DataService) {}
   
   ngOnInit() {
     this.model = {
+      id: 0,
       name: '',
       instruction: '',
       category: null,
@@ -35,21 +38,30 @@ export class RecipeFormComponent implements OnInit {
     };
     this.complexityDropdown = Object.keys(Complexity).filter(key => !isNaN(Number(Complexity[key])));
     this.categoryDropdown = Object.keys(Category).filter(key => (Category[key]));
-
+    this.getIngredients();
+    this.getRecipesCount();
     
   }
    // TODO: HTTP call to the inmemory database
   onSave(): void {
     this.dataService.addRecipe(this.model)
-    .subscribe(recipe => this.model = recipe)
+    .subscribe(recipe => {
+      this.model = recipe; 
+      this.model.creationDate = new Date(recipe.creationDate); 
+      this.getRecipesCount();
+    });
   }
 // TODO: HTTP call to get all ingredients and populate the list
   getIngredients(): void {
     this.dataService.getIngredients()
-    .subscribe(ingredients => this.ingredients = ingredients)
+    .subscribe(ingredients => {this.ingredients = ingredients; this.getRecipesCount();})
   }
-  
 
+  getRecipesCount(): void {
+
+    this.dataService.getRecipes()
+      .subscribe(recipes => {this.recipes = recipes; this.recipesCount = this.recipes.length})
+  }
 }
 
 
