@@ -19,13 +19,15 @@ import { FileUploadModule} from 'primeng/fileupload';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    RecipeListComponent
   ],
   imports: [
     HttpClientModule,
