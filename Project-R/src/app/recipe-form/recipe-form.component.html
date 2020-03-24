@@ -1,5 +1,7 @@
+
 <div class="text-center text-primary"><h3>{{title}}</h3></div>
-<div class="container">
+<a [routerLink]="['/']">Go to List</a>
+<div class="container" *ngIf="model">
     <div class="row">
         <div class="col-6">
             <label class="d-block" for="recipeName">Εισάγετε όνομα Συνταγής</label>
@@ -69,4 +71,4 @@
 </div>
 
 
-Recipes: {{ recipesCount }}
+<!-- Recipes: <pre>{{ model | json}}</pre> -->

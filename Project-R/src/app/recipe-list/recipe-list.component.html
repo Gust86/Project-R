@@ -1,14 +1,20 @@
 <p>recipe-list works!</p>
-<a [routerLink]="['recipe-form']">Go to Form</a>
+<a [routerLink]="['recipe-form/']">Go to Form</a>
 
-<p-table [value]="recipeList">
+<p-table 
+    [value]="recipeList"
+    [resizableColumns]="true"
+    [responsive]="true"
+    [totalRecords]="totalRecipes"
+>
     <ng-template pTemplate="header">
         <tr>
-            <th>Συνταγή</th>
+            <th>Συνταγή<p-sortIcon [field]="'Συνταγή'"> </p-sortIcon></th>
             <th>Διάρκεια Εκτέλεσης </th>
             <th>Δυσκολία</th>
             <th>Κατηγορία</th>
             <th>Ημ. Δημιουργίας</th>
+            <th>Επιλογές</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-recipe>
@@ -17,7 +23,20 @@
             <td>{{recipe.completionTime}}</td>
             <td>{{recipe.complexity}}</td>
             <td>{{recipe.category}}</td>
-                <td>{{recipe.creationDate | date:'d/M/yyyy'}}</td>
+            <td>{{recipe.creationDate | date:'d/M/yyyy'}}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-info"
+                    [routerLink]="['recipe-form/' + recipe.id]"
+                ><i class="fas fa-edit"></i></button>
+            </td>
         </tr>
     </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="5">
+                <b>Σύνολο Συνταγών: {{ totalRecipes }}</b>
+            </td>
+        </tr>
+    </ng-template>
+
 </p-table>

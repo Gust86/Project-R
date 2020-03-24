@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../models/recipes';
 import { DataService } from '../services/data.service';
+import { SearchOrder } from '../models/search';
 
 @Component({
   selector: 'app-recipe-list',
@@ -9,6 +10,7 @@ import { DataService } from '../services/data.service';
 })
 export class RecipeListComponent implements OnInit {
   recipeList: Recipe[];
+  totalRecipes: number;
 
   constructor(private dataService: DataService) { }
 
@@ -19,7 +21,10 @@ export class RecipeListComponent implements OnInit {
 
   getRecipe(): void {
     this.dataService.getRecipes().subscribe(
-      recipes => this.recipeList = recipes
+      recipes => {
+        this.recipeList = recipes;
+        this.totalRecipes = this.recipeList.length;
+      }
     );
   }
 

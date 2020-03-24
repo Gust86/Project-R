@@ -30,9 +30,6 @@ export class DataService {
       map(items => items),
       catchError(err => this.catchBadResponse(err))
     );
-      // .pipe(
-      //   catchError(this.handleError<Ingredient[]>('getIngredients',[]))
-      // );    
   }
   addRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(this.recipeUrl, recipe, this.httpOptions).pipe(
@@ -47,9 +44,14 @@ export class DataService {
       return of(result as T);
     };
   }
-
   catchBadResponse(error: HttpErrorResponse | any): Observable<any> {
     return of(false);
+  }
+  getRecipeById(id: number): Observable<Recipe> {
+    const url = `${this.recipeUrl}/${id}`;
+    return this.http.get<Recipe>(url).pipe(
+      catchError(err => this.catchBadResponse(err))
+    );
   }
 
 

@@ -15,6 +15,10 @@ const routes: Routes = [
     component: RecipeListComponent,
   },
   {
+    path: 'recipe-form/:id',
+    component: RecipeFormComponent
+  },
+  {
     path: 'recipe-form',
     component: RecipeFormComponent
   }

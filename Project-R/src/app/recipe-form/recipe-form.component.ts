@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Complexity, Ingredient, Category, Recipe } from '../models/recipes';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router'
+import { takeUntil } from 'rxjs/operators';
 
 
 
@@ -12,6 +14,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./recipe-form.component.css']
 })
 export class RecipeFormComponent implements OnInit {
+  
+  recipeId: number = 0;
   model: Recipe = null;
   title: string = 'Φόρμα δημιουργίας Συνταγής';
   autoResize: boolean = false;
@@ -22,26 +26,44 @@ export class RecipeFormComponent implements OnInit {
   recipes: Recipe[];
   recipesCount: number;
   
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private route: ActivatedRoute
+    ) {}
   
   ngOnInit() {
-    this.model = {
-      id: 0,
-      name: '',
-      instruction: '',
-      category: null,
-      completionTime: 0,
-      complexity: null,
-      creationDate: new Date(),
-      img: '',
-      ingredients: []
-    };
+    this.route.params
+      .pipe()
+      .subscribe(params => {
+        console.log(+params['id']);
+        if(!isNaN(+params['id']))
+          (this.recipeId = +params['id']);
+      });
+
+    
+    if(this.recipeId == 0) {
+      this.model = {
+        id: 0,
+        name: '',
+        instruction: '',
+        category: null,
+        completionTime: 0,
+        complexity: null,
+        creationDate: new Date(),
+        img: '',
+        ingredients: []
+      }
+    } else {
+      this.getRecipe()
+    }
+    
     this.complexityDropdown = Object.keys(Complexity).filter(key => !isNaN(Number(Complexity[key])));
     this.categoryDropdown = Object.keys(Category).filter(key => (Category[key]));
     this.getIngredients();
     this.getRecipesCount();
     
   }
+
    // TODO: HTTP call to the inmemory database
   onSave(): void {
     this.dataService.addRecipe(this.model)
@@ -61,6 +83,13 @@ export class RecipeFormComponent implements OnInit {
 
     this.dataService.getRecipes()
       .subscribe(recipes => {this.recipes = recipes; this.recipesCount = this.recipes.length})
+  }
+  getRecipe(): void {
+    this.dataService.getRecipeById(this.recipeId)
+    .subscribe(recipe => {
+      this.model = recipe
+      this.model.creationDate = new Date(recipe.creationDate)
+    })
   }
 }
 
