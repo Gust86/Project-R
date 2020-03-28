@@ -43,7 +43,7 @@ export class RecipeFormComponent implements OnInit {
     
     if(this.recipeId == 0) {
       this.model = {
-        id: 0,
+        id: null,
         name: '',
         instruction: '',
         category: null,
@@ -66,10 +66,14 @@ export class RecipeFormComponent implements OnInit {
 
    // TODO: HTTP call to the inmemory database
   onSave(): void {
+    let isNew = this.model.id == null;
     this.dataService.addRecipe(this.model)
     .subscribe(recipe => {
-      this.model = recipe; 
-      this.model.creationDate = new Date(recipe.creationDate); 
+      this.model = recipe;
+      isNew && (this.model.creationDate = new Date(recipe.creationDate));
+      // if(isNew) {
+      //   (this.model.creationDate = new Date(recipe.creationDate))
+      // }
       this.getRecipesCount();
     });
   }
