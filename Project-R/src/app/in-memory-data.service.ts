@@ -14,7 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
       completionTime: 60,
       complexity: Complexity.Intermediate,
       category: Category.Lunch,
-      img: '',
+      img: 'https://www.giorgostsoulis.com/media/k2/items/cache/817a0b87c8b4a5b09390d4c2ae24ca96_L.jpg',
       creationDate: new Date(),
       instruction: 'Για τα ντολμαδάκια γιαλαντζί..'
     },{
@@ -24,7 +24,7 @@ export class InMemoryDataService implements InMemoryDbService {
       completionTime: 120,
       complexity: Complexity.Beginer,
       category: Category.Lunch,
-      img: '',
+      img: 'https://www.newsbeast.gr/files/1/2018/03/135149903.jpg',
       creationDate: new Date(),
       instruction: 'Για μουσακά με μελιτζάνες..'
     },{ 
@@ -34,7 +34,7 @@ export class InMemoryDataService implements InMemoryDbService {
       completionTime: 40,
       complexity: Complexity.Expert,
       category: Category.Dinner,
-      img: '',
+      img: 'https://www.argiro.gr/wp-content/uploads/2018/05/fasolakia-ladera-kokkinista-768x645.jpg',
       creationDate: new Date(),
       instruction: 'Για φασολάκια λαδερά..'
     },{
@@ -44,7 +44,7 @@ export class InMemoryDataService implements InMemoryDbService {
       completionTime: 180,
       complexity: Complexity.Intermediate,
       category: Category.Breakfast,
-      img: '',
+      img: 'https://s.kathimerini.gr/resources/2016-09/65160118_08460_kathimerino_mpoutakia-kotopoulou-me-patates-thumb-large.jpg',
       creationDate: new Date(),
       instruction: 'Για κοτόπουλο στον φούρνο..'
     },{
@@ -54,7 +54,7 @@ export class InMemoryDataService implements InMemoryDbService {
       completionTime: 10,
       complexity: Complexity.Beginer,
       category: Category.Dinner,
-      img: '',
+      img: 'https://img-global.cpcdn.com/recipes/49d24b6da67e4128/751x532cq70/%CE%BA%CF%8D%CF%81%CE%B9%CE%B1-%CF%86%CF%89%CF%84%CE%BF%CE%B3%CF%81%CE%B1%CF%86%CE%AF%CE%B1-%CF%83%CF%85%CE%BD%CF%84%CE%B1%CE%B3%CE%AE%CF%82-makaronia-me-kima.jpg',
       creationDate: new Date(),
       instruction: 'Για μακαρόνια με κιμά..'
     }];

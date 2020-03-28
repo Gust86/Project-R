@@ -1,4 +1,4 @@
-<p>recipe-list works!</p>
+
 <a [routerLink]="['recipe-form/']">Go to Form</a>
 
 <p-table 
@@ -14,6 +14,7 @@
             <th>Δυσκολία</th>
             <th>Κατηγορία</th>
             <th>Ημ. Δημιουργίας</th>
+            <!-- <th>Εικόνα</th> -->
             <th>Επιλογές</th>
         </tr>
     </ng-template>
@@ -24,10 +25,19 @@
             <td>{{recipe.complexity}}</td>
             <td>{{recipe.category}}</td>
             <td>{{recipe.creationDate | date:'d/M/yyyy'}}</td>
+            <!-- <td>
+                <img [src]="recipe.img" alt="..." class="img-thumbnail" style="height:80px; width:80px;">
+            </td> -->
             <td>
                 <button class="btn btn-sm btn-outline-info"
                     [routerLink]="['recipe-form/' + recipe.id]"
                 ><i class="fas fa-edit"></i></button>
+                <button class="btn btn-sm btn-outline-warning ml-1"
+                [routerLink]="['detail/' + recipe.id]">
+                <i class="far fa-eye"></i></button>              
+                <button class="btn btn-sm btn-outline-danger ml-1"
+                    (click)="delete(recipe)"
+                ><i class="fas fa-trash-alt"></i></button> 
             </td>
         </tr>
     </ng-template>
@@ -35,6 +45,9 @@
         <tr>
             <td colspan="5">
                 <b>Σύνολο Συνταγών: {{ totalRecipes }}</b>
+            </td>
+            <td>
+                <a [routerLink]="['recipe-form/']"><i class="fas fa-plus-square fa "> Νέα Συνταγή</i></a>
             </td>
         </tr>
     </ng-template>

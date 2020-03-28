@@ -1,0 +1,53 @@
+<!-- <div class="container" *ngIf='recipe'>
+    <h1 class="text-center text-primary">
+        {{recipe.name}}
+    </h1>
+    <p class="text-center">Κατηγορία  {{recipe.category}}</p>
+    <img [src]="recipe.img" alt="Responsive" class="img-fluid">
+    <div class="row">
+        <div class="col-6">
+            <i class="far fa-clock fa-4x"></i>
+            <h6>Χρόνος Εκτέλεσης {{recipe.completionTime}}'</h6>
+        </div>
+        <div class="col-1">
+       
+        </div>
+    </div>
+</div> -->
+
+<section *ngIf='recipe'>
+    <div class="card mx-auto" style="width:1200px;">
+        <div class="card-header">
+            <h1 class="text-center">
+                {{recipe.name}}
+            </h1>
+            <div class="text-center">
+                <img [src]="recipe.img" alt="..." class="img-fluid">
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6 text-center">
+                    <div class="d-flex justify-content-center">
+                        <div>
+                            <i class="far fa-clock fa-2x"></i>
+                        </div>
+                        <div class="ml-1">
+                            <h6>Χρόνος Εκτέλεσης {{recipe.completionTime}}'</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" style="justify-content: center;">
+                    <div class="d-flex justify-content-center">
+                        <div style="display: block;">
+                            <i class="fas fa-utensils fa-2x "></i>
+                        </div>
+                        <div class="ml-1" style="display: block;">
+                            <p-rating [(ngModel)]="recipe.complexity" [cancel]=false [disabled]=true [stars]=4></p-rating>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

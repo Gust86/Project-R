@@ -15,12 +15,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule} from 'primeng/fileupload';
 import {TableModule} from 'primeng/table';
+import {RatingModule} from 'primeng/rating';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 
 
@@ -28,13 +30,15 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
   declarations: [
     AppComponent,
     RecipeFormComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false}
     ),
+    RatingModule,
     TableModule,
     InputTextModule,
     CalendarModule,
