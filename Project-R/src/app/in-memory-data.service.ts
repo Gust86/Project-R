@@ -10,13 +10,37 @@ export class InMemoryDataService implements InMemoryDbService {
     const recipes: Recipe[] = [{
       id: 1,
       name: 'Ντολμαδάκια',
-      ingredients: [{name:'αλάτι'},{name:'κιμάς'}],
+      ingredients: [{name:'αλάτι'},{name:'κιμάς'},{name:'ζάχαρη'}],
       completionTime: 60,
       complexity: Complexity.Intermediate,
       category: Category.Lunch,
       img: 'https://www.giorgostsoulis.com/media/k2/items/cache/817a0b87c8b4a5b09390d4c2ae24ca96_L.jpg',
       creationDate: new Date(),
-      instruction: 'Για τα ντολμαδάκια γιαλαντζί..'
+      instruction: `Curabitur condimentum velit id sem sagittis blandit.
+      Pellentesque et augue sed velit scelerisque dignissim.
+      Integer et mi commodo, venenatis libero at, tincidunt justo.
+      Nulla dapibus mi quis tortor condimentum eleifend.
+      Ut gravida diam luctus volutpat euismod.
+      Suspendisse porta tortor non tellus volutpat facilisis.
+      Cras viverra nunc a enim luctus bibendum.
+      Pellentesque tristique urna eget pharetra condimentum.
+      Nullam quis orci sit amet metus hendrerit ultricies eget sed justo.
+      Vestibulum accumsan ex nec cursus faucibus.
+      Integer posuere justo eu ipsum facilisis, lacinia malesuada eros laoreet.
+      Maecenas id est eu lectus dictum placerat.
+      Aliquam finibus lectus vitae lorem cursus ultrices.
+      Sed maximus ipsum quis enim euismod, eget luctus urna rutrum.
+      In consequat dui nec cursus molestie.
+      Fusce at nulla a lectus facilisis maximus quis quis tellus.
+      Sed at mi a justo aliquam pulvinar quis id ipsum.
+      Fusce a enim eget dolor fringilla posuere quis vel massa.
+      Curabitur imperdiet quam et pharetra dapibus.
+      Morbi lobortis lorem at tortor suscipit, eu dapibus justo rutrum.
+      Aliquam rhoncus nisl et venenatis ultricies.
+      Aenean eu nibh vel sem feugiat tempus eget ac felis.
+      Vestibulum consequat urna et nisi interdum imperdiet.
+      Curabitur tristique nibh non posuere consequat.
+      Suspendisse eget ipsum a metus imperdiet pellentesque.`
     },{
       id: 2,
       name: 'Μουσακάς',
