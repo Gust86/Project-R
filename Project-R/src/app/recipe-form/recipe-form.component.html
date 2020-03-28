@@ -54,11 +54,13 @@
             <p-calendar [disabled]="true" [(ngModel)]="model.creationDate" dateFormat="dd.mm.yy"></p-calendar>
         </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-12">
-            <p-fileUpload name="myfile[]"></p-fileUpload>
+            <!-- <p-fileUpload name="myfile[]"></p-fileUpload> -->
+            <label class="d-block">URL Εικόνας</label>
+            <input class="d-block" placeholder="Διεθυνση εικόνας" type="text" min="0" name="recipeName" size="40" [(ngModel)]="model.img"/>
         </div>
-    </div> -->
+    </div>
     <div class="row">
         <label class="d-block">Οδηγίες</label>
         <div class="col-12">
