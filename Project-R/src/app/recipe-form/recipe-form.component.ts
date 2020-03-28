@@ -3,7 +3,7 @@ import { Complexity, Ingredient, Category, Recipe } from '../models/recipes';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router'
-import { takeUntil } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 
 
@@ -28,7 +28,8 @@ export class RecipeFormComponent implements OnInit {
   
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
     ) {}
   
   ngOnInit() {
@@ -67,15 +68,16 @@ export class RecipeFormComponent implements OnInit {
    // TODO: HTTP call to the inmemory database
   onSave(): void {
     let isNew = this.model.id == null;
-    this.dataService.addRecipe(this.model)
-    .subscribe(recipe => {
-      this.model = recipe;
-      isNew && (this.model.creationDate = new Date(recipe.creationDate));
-      // if(isNew) {
-      //   (this.model.creationDate = new Date(recipe.creationDate))
-      // }
-      this.getRecipesCount();
-    });
+    let r = window.confirm("Θέλετε αυτή σας η συνταγή να αποθηκευτεί;");
+    if (r == true) {
+      this.dataService.addRecipe(this.model)
+      .subscribe(recipe => {
+        this.model = recipe;
+        isNew && (this.model.creationDate = new Date(recipe.creationDate));
+        this.getRecipesCount();
+      });
+      this.goBack();
+    }
   }
 // TODO: HTTP call to get all ingredients and populate the list
   getIngredients(): void {
@@ -94,6 +96,9 @@ export class RecipeFormComponent implements OnInit {
       this.model = recipe
       this.model.creationDate = new Date(recipe.creationDate)
     })
+  }
+  goBack(): void {
+    this.location.back()
   }
 }
 
