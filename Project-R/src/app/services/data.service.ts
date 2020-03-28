@@ -22,7 +22,7 @@ export class DataService {
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.recipeUrl)
       .pipe(
-        catchError(this.handleError<Recipe[]>('getRecipes',[]))
+        catchError(err => this.catchBadResponse(err))
       );    
   }
   getIngredients(): Observable<Ingredient[]> {
@@ -35,14 +35,8 @@ export class DataService {
     return this.http.post<Recipe>(this.recipeUrl, recipe, this.httpOptions).pipe(
       map(item => item),
       tap((newRecipe: Recipe) => console.log(`recipe ${newRecipe.name} added`)),
-      catchError(this.handleError<Recipe>('addRecipe'))
+      catchError(err => this.catchBadResponse(err))
     );
-  }
-  handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // console.error(error);
-      return of(result as T);
-    };
   }
   catchBadResponse(error: HttpErrorResponse | any): Observable<any> {
     return of(false);
@@ -51,6 +45,15 @@ export class DataService {
     const url = `${this.recipeUrl}/${id}`;
     return this.http.get<Recipe>(url).pipe(
       catchError(err => this.catchBadResponse(err))
+    );
+  }
+  deleteRecipe(recipe: Recipe): Observable<Recipe> {
+    const id = recipe.id;
+    const url = `${this.recipeUrl}/${id}`;
+    return this.http.delete<Recipe>(url).pipe(
+      map(items => items),
+      tap(_ => console.log(`deleted recipe id: ${id}`)),
+      catchError(err => this.catchBadResponse)
     );
   }
 
