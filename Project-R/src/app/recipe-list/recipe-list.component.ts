@@ -12,13 +12,12 @@ export class RecipeListComponent implements OnInit {
   recipeList: Recipe[];
   totalRecipes: number;
 
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getRecipe();
   }
-
-
   getRecipe(): void {
     this.dataService.getRecipes().subscribe(
       recipes => {
@@ -26,6 +25,10 @@ export class RecipeListComponent implements OnInit {
         this.totalRecipes = this.recipeList.length;
       }
     );
+  }
+  delete(recipe: Recipe): void {
+    this.recipeList = this.recipeList.filter(r => r !== recipe)
+    this.dataService.deleteRecipe(recipe).subscribe();
   }
 
 }
