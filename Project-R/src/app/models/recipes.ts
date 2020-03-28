@@ -34,7 +34,7 @@ export enum Complexity {
 }
 
 export enum Category {
-    Breakfast = 'Breakfast',
-    Lunch = 'Lunch',
-    Dinner = 'Dinner'
+    Breakfast = 'Πρωινό',
+    Lunch = 'Μεσημεριανό',
+    Dinner = 'Βραδυνό'
 }
