@@ -1,67 +1,94 @@
-<section *ngIf='recipe'>
-    <div class="card mx-auto" style="width:1200px;">
-        <div class="card-header">
-            <h1 class="text-center">
-                {{recipe.name}}
-            </h1>
-            <div class="text-center">                
-                    <img [src]="recipe.img" alt="..." class="img-fluid">                
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-4 text-center">
-                    <div class="d-flex justify-content-center">
-                        <div>
-                            <i class="far fa-clock fa-2x"></i>
-                        </div>
-                        <div class="ml-1">
-                            <h6 style="font-size: 20px;">Χρόνος Εκτέλεσης {{recipe.completionTime}}'</h6>
-                        </div>
-                    </div>
-                </div>
-                <div title="Δυσκολία Συνταγής" class="col-4" style="justify-content: center;">
-                    <div class="d-flex justify-content-center">
-                        <div style="display: block;">
-                            <i class="fas fa-utensils fa-2x "></i>
-                        </div>
-                        <div class="ml-1" style="display: block;" >
-                            <p-rating  [(ngModel)]="recipe.complexity" [cancel]=false [disabled]=true [stars]=4 style="font-size: 20px;"></p-rating>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 text-center">
-                    <h3 style="font-size: 20px;">
-                        <b>Κατηγορία: </b>
-                        <i>{{recipe.category}}</i>
-                    </h3>
-                </div>
-            </div>
-        </div>
-        <div class="card-header container-flex">
-            <div class="row">
-                <div class="col-8">
-                    <div class="text-center">
-                        <h3> Μέθοδος Εκτέλεσης </h3>
-                    </div>
-                    {{recipe.instruction}}
-                </div>
-                <div class="col">
-                    <h3 class="text-center">Συστατικά</h3>
-                    <ul>
-                        <li *ngFor="let ingredient of recipe.ingredients">
-                            {{ingredient.name}}
-                        </li>
-                    </ul>
-
-                </div>
-
-            </div>
-        </div>
+<section *ngIf="recipe">
+  <div class="card mx-auto" style="width:1200px;">
+    <div class="card-header">
+      <h1 class="text-center">
+        {{ recipe.name }}
+      </h1>
+      <div class="text-center">
+        <img [src]="recipe.img" alt="..." class="img-fluid" />
+      </div>
+      <button class="btn btn-primary" (click)="openRatingModal()">
+        Προσθέστε Βαθμολογία
+      </button>
     </div>
-<div class="d-flex justify-content-center">
-    <button  class="btn btn-primary" (click)="goBack()">Επιστροφή στην λίστα</button>   
-</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4 text-center">
+          <div class="d-flex justify-content-center">
+            <div>
+              <i class="far fa-clock fa-2x"></i>
+            </div>
+            <div class="ml-1">
+              <h6 style="font-size: 20px;">
+                Χρόνος Εκτέλεσης {{ recipe.completionTime }}'
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div
+          title="Δυσκολία Συνταγής"
+          class="col-4"
+          style="justify-content: center;"
+        >
+          <div class="d-flex justify-content-center">
+            <div style="display: block;">
+              <i class="fas fa-utensils fa-2x "></i>
+            </div>
+            <div class="ml-1" style="display: block;">
+              <p-rating
+                [(ngModel)]="recipe.complexity"
+                [cancel]="false"
+                [disabled]="true"
+                [stars]="4"
+                style="font-size: 20px;"
+              ></p-rating>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <h3 style="font-size: 20px;">
+            <b>Κατηγορία: </b>
+            <i>{{ recipe.category }}</i>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="card-header container-flex">
+      <div class="row">
+        <div class="col-8">
+          <div class="text-center">
+            <h3>Μέθοδος Εκτέλεσης</h3>
+          </div>
+          {{ recipe.instruction }}
+        </div>
+        <div class="col">
+          <h3 class="text-center">Συστατικά</h3>
+          <ul>
+            <li *ngFor="let ingredient of recipe.ingredients">
+              {{ ingredient.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-primary" (click)="goBack()">
+      Επιστροφή στην λίστα
+    </button>
+  </div>
 </section>
-    
 
+<section>
+  <app-custom-modal
+    [(isOpen)]="isRating"
+    title="Βαθμολογείστε την συνταγή!"
+    size="xl"
+  >
+    <div class="modal-body" *ngIf="isRating">
+      <p>
+        Εδώ θα μπεί το component βαθμολογίας
+      </p>
+    </div>
+  </app-custom-modal>
+</section>
