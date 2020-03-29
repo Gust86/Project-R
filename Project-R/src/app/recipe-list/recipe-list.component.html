@@ -5,8 +5,9 @@
             
         </div>
         <div class="card-body">
-            <div>
-                <p-table 
+            <div class="d-flex">
+                <p-table
+                    class="flex-grow-1" 
                     [value]="recipeList"
                     [resizableColumns]="true"
                     [responsive]="true"
@@ -20,7 +21,7 @@
                             <th>Κατηγορία</th>
                             <th>Ημ. Δημιουργίας</th>
                             <!-- <th>Εικόνα</th> -->
-                            <th>Επιλογές</th>
+                            <th style="width: 9rem">Επιλογές</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-recipe>
