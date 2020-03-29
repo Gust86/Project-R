@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, fromEventPattern, of } from 'rxjs';
 import { Recipe, Ingredient } from '../models/recipes';
 import { catchError, map, tap } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {MessageService} from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class DataService {
   };
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: MessageService
   ) { }
 
 
@@ -34,11 +37,12 @@ export class DataService {
   addRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(this.recipeUrl, recipe, this.httpOptions).pipe(
       map(item => item),
-      tap((newRecipe: Recipe) => console.log(`recipe ${newRecipe.name} added`)),
+      tap((newRecipe: Recipe) => this.messageService.add({severity:'success', summary:'Τσελεμεντές', detail:'Η Συνταγή Προστέθηκε με επιτυχία!'})),
       catchError(err => this.catchBadResponse(err))
     );
   }
   catchBadResponse(error: HttpErrorResponse | any): Observable<any> {
+    this.messageService.add({severity:'error', summary:'Τσελεμεντές', detail:'Κάτι Πήγε Στραβά!' + error});
     return of(false);
   }
   getRecipeById(id: number): Observable<Recipe> {
@@ -53,6 +57,7 @@ export class DataService {
     return this.http.delete<Recipe>(url).pipe(
       map(items => items),
       tap(_ => console.log(`deleted recipe id: ${id}`)),
+      tap((newRecipe: Recipe) => this.messageService.add({severity:'warn', summary:'Τσελεμεντές', detail:'Η συνταγή Διαγράφηκε!'})),
       catchError(err => this.catchBadResponse)
     );
   }

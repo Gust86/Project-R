@@ -16,6 +16,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule} from 'primeng/fileupload';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +42,7 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     ),
     RatingModule,
     TableModule,
+    ToastModule,
     InputTextModule,
     CalendarModule,
     FileUploadModule,
@@ -50,7 +53,7 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     FormsModule,
     InputTextareaModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
