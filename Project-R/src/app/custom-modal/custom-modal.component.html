@@ -1,0 +1,9 @@
+<ng-template #content let-c="close" let-d="dismiss" *ngIf="isOpen">
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <ng-content></ng-content>
+</ng-template>
